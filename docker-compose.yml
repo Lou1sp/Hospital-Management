@@ -1,0 +1,20 @@
+#This file basically like creating a virtual database, instead of downloading the real one
+services:
+  postgres:
+    image: postgres:15 #like a blueprint, copy the config of pg ver 15
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+#Imagine container is a room, and volume is like a storehouse
+#If docker down, container deleted, but volume is still there, so when docker is up, store data from volume back 
+
+#Anything that PG write in /var/lib/postgresql/data inside the container, sync in postgres_data in volume
