@@ -1,0 +1,62 @@
+src/
+  main.ts
+
+  modules/
+    auth/
+      auth.controller.ts
+      auth.service.ts
+      auth.module.ts
+      dto/
+      strategies/
+
+    users/
+      users.controller.ts
+      users.service.ts
+      users.module.ts
+      entities/
+      dto/
+
+    patients/
+      patients.controller.ts
+      patients.service.ts
+      patients.module.ts
+      entities/
+      dto/
+
+    doctors/
+      doctors.controller.ts
+      doctors.service.ts
+      doctors.module.ts
+      entities/
+      dto/
+
+    appointments/
+      appointments.controller.ts
+      appointments.service.ts
+      appointments.module.ts
+      entities/
+      dto/
+
+    emr/
+      emr.controller.ts
+      emr.service.ts
+      emr.module.ts
+      entities/
+      dto/
+
+  common/
+    guards/
+      jwt.guard.ts
+      roles.guard.ts
+
+    decorators/
+      roles.decorator.ts
+
+    filters/
+    interceptors/
+
+  database/
+    prisma/ or typeorm/
+    migrations/
+
+  config/
