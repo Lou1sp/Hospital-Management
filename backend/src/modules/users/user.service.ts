@@ -19,3 +19,12 @@ export class UserService {
     return this.userRepo.save(user);
   }
 }
+
+// Injection is like: instead of you creating and managing everything yourself,
+// the framework provides the object for you, and you just use it.
+
+// The framework (NestJS) manages the lifecycle of objects (like Repository),
+// so you don't manually instantiate them.
+
+// Since User is registered in TypeORM via TypeOrmModule.forFeature([User]),
+// NestJS can provide (inject) its Repository into your service.
