@@ -10,6 +10,9 @@ export class User {
   email!: string;
 
   @Column()
+  user_name!: string;
+
+  @Column()
   password_hash!: string;
 
   @Column({

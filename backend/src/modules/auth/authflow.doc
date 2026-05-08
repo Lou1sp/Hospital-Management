@@ -1,0 +1,33 @@
+┌─────────────────────────────────┐        ┌─────────────────────────────────┐
+│           AuthService           │        │           JwtStrategy           │
+│   Chỉ chạy 1 lần lúc            │        │   Chạy mỗi lần gọi route        │
+│       login / register          │        │       có @UseGuards             │
+│                                 │   VS   │                                 │
+│  POST /auth/register            │        │  GET /profile                   │
+│  hash password → lưu DB         │        │  @UseGuards(JwtAuthGuard)       │
+│              → cấp token        │        │                                 │
+│                                 │        │  JwtStrategy.validate(payload)  │
+│  POST /auth/login               │        │  xác minh token → lấy user      │
+│  kiểm tra password → cấp token  │        │              từ DB              │
+│                                 │        │                                 │
+│  Kết quả:                       │        │  Kết quả:                       │
+│  { access_token: "eyJ..." }     │        │  req.user = { id, email, ... }  │
+└─────────────────────────────────┘        └─────────────────────────────────┘
+
+Bất kỳ route nào cần đăng nhập mới dùng được
+
+@Get('orders')
+@UseGuards(JwtAuthGuard)       // → JwtStrategy chạy ở đây
+getMyOrders(@Req() req) { ... }
+
+@Patch('profile')
+@UseGuards(JwtAuthGuard)       // → JwtStrategy chạy ở đây
+updateProfile(@Req() req) { ... }
+
+@Delete('account')
+@UseGuards(JwtAuthGuard)       // → JwtStrategy chạy ở đây
+deleteAccount(@Req() req) { ... }
+
+
+Tức là, nếu đăng nhập đăng kí thôi thì auth service thôi là đủ
+Nhưng sau này nếu gửi thông tin nhạy cảm, thì thêm useGuard để dùng jw strategy
