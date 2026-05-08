@@ -46,7 +46,7 @@ export function PatientLoginForm() {
       {/* Submit */}
       <button
         type="submit"
-        className="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-3 rounded-2xl font-semibold shadow-lg shadow-blue-200"
+        className="w-full bg-blue-600 hover:bg-blue-900 transition text-white py-3 rounded-2xl font-semibold shadow-lg shadow-blue-200 cursor-pointer"
       >
         Login as Patient
       </button>

@@ -74,7 +74,7 @@ export default function LandingPage() {
 
             <div className="flex flex-wrap gap-4 mt-10">
               <Link
-                href="pages/auth/login"
+                href="/auth/login"
                 className="px-7 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 transition text-white font-semibold shadow-2xl shadow-blue-200"
               >
                 Login

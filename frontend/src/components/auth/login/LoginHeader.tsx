@@ -1,6 +1,6 @@
 export function LoginHeader() {
   return (
-    <div className="mb-8">
+    <div className="mb-8 mt-8">
       <p className="text-sm font-medium text-blue-600 mb-2">
         Secure Login
       </p>

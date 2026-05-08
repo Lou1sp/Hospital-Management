@@ -1,5 +1,5 @@
-import { Input } from "../ui/Input";
-import { Button } from '../ui/Button';
+import { Input } from "../../ui/Input";
+import { Button } from '../../ui/Button';
 
 export function StaffLoginForm() {
   return (
@@ -26,7 +26,12 @@ export function StaffLoginForm() {
         </button>
       </div>
 
-      <Button>Login as Staff</Button>
+      <button
+        type="submit"
+        className="w-full bg-blue-600 hover:bg-blue-900 transition text-white py-3 rounded-2xl font-semibold shadow-lg shadow-blue-200 cursor-pointer"
+      >
+        Login as Staff
+      </button>
     </div>
   );
 }
