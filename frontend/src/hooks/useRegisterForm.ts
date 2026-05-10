@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { registerPatient } from '@/lib/api/auth';
+import { useRouter } from 'next/navigation';
 
 export function useRegisterForm() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -27,15 +28,16 @@ export function useRegisterForm() {
 
   async function handleSubmit(
     e: React.FormEvent<HTMLFormElement>,
-  ) {
-    e.preventDefault();
+  ) {    e.preventDefault();
 
     try {
       setLoading(true);
-
       const data = await registerPatient({
         email: formData.email,
+        user_name: formData.firstName + " " + formData.lastName,
         password: formData.password,
+        phone_num: formData.phone,
+        DOB: formData.dob
       });
 
       localStorage.setItem(
@@ -45,7 +47,7 @@ export function useRegisterForm() {
 
       console.log(data);
     } finally {
-      setLoading(false);
+      router.push('/auth/login');
     }
   }
 

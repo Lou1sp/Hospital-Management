@@ -14,8 +14,20 @@ export class UserService {
     return this.userRepo.findOne({ where: { email } });
   }
 
-  async create(email: string, password_hash: string): Promise<User> {
-    const user = this.userRepo.create({ email, password_hash });
+  async create(
+    email: string,
+    user_name: string,
+    password_hash: string,
+    phone_num: string,
+    DOB: string,
+  ): Promise<User> {
+    const user = this.userRepo.create({
+      email,
+      user_name,
+      password_hash,
+      phone_num,
+      DOB,
+    });
     return this.userRepo.save(user);
   }
 }

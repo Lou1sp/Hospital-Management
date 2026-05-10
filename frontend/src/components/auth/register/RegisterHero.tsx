@@ -3,7 +3,7 @@ export function RegisterHero() {
     <section className="hidden lg:flex lg:w-1/2 bg-[#06152d] text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      <div className="relative z-10 flex flex-col justify-between p-14 w-full h-150">
+      <div className="relative z-10 flex flex-col justify-between p-14 w-full">
         <div>
           <div className="flex items-center gap-4 mb-24">
             <div className="w-14 h-14 border border-blue-500 flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)]">

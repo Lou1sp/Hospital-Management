@@ -11,6 +11,7 @@ import { UserModule } from './modules/users/user.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
+      autoLoadEntities: true,
       synchronize: true,
     }),
 

@@ -15,6 +15,12 @@ export class User {
   @Column()
   password_hash!: string;
 
+  @Column()
+  phone_num!: string;
+
+  @Column()
+  DOB!: Date;
+
   @Column({
     type: 'enum',
     enum: UserRole,

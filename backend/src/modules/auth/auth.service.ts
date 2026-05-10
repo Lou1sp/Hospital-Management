@@ -24,7 +24,13 @@ export class AuthService {
     }
 
     const hashed = await bcrypt.hash(dto.password, 10);
-    const user = await this.userService.create(dto.email, hashed);
+    const user = await this.userService.create(
+      dto.email,
+      dto.user_name,
+      hashed,
+      dto.phone_num,
+      dto.DOB,
+    );
     return this.signToken(user.id, user.email);
   }
 

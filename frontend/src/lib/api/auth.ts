@@ -1,6 +1,6 @@
 import { RegisterDTO } from '@/types/auth';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:5000';
 
 export async function registerPatient(
   dto: RegisterDTO,
