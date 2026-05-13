@@ -31,7 +31,7 @@ export class AuthService {
       dto.phone_num,
       dto.DOB,
     );
-    return this.signToken(user.id, user.email);
+    return this.signToken(user.id, user.email, user.role);
   }
 
   async login(dto: LoginDTO) {
@@ -45,11 +45,11 @@ export class AuthService {
     if (!isMatch) {
       throw new UnauthorizedException('Wrong email or password');
     }
-    return this.signToken(user.id, user.email);
+    return this.signToken(user.id, user.email, user.role);
   }
 
-  private signToken(userId: string, email: string) {
-    const payload: JwtPayLoad = { sub: userId, email };
+  private signToken(userId: string, email: string, role: string) {
+    const payload: JwtPayLoad = { sub: userId, email, role };
     return {
       access_token: this.jwtService.sign(payload),
       //jwtService.sign() encrypt payload + sign with JWT_SECRET

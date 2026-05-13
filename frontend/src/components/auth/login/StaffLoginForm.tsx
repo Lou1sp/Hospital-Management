@@ -3,7 +3,7 @@ import { Button } from '../../ui/Button';
 
 export function StaffLoginForm() {
   return (
-    <div className="space-y-5">
+    <form className="space-y-5">
       <Input
         label="Employee ID"
         placeholder="Enter hospital-issued ID"
@@ -32,6 +32,6 @@ export function StaffLoginForm() {
       >
         Login as Staff
       </button>
-    </div>
+    </form>
   );
 }

@@ -7,6 +7,7 @@ import { UserService } from '../../users/user.service';
 export interface JwtPayLoad {
   sub: string;
   email: string;
+  role: string;
 }
 
 @Injectable()

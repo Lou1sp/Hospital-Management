@@ -1,0 +1,143 @@
+NestJS RBAC System (Roles + RolesGuard)
+1. Purpose
+
+RBAC (Role-Based Access Control) is a mechanism used to control API access based on user roles.
+
+Typical roles:
+
+ADMIN → full system access
+DOCTOR → medical-related access
+PATIENT → limited access
+
+
+2. Architecture Overview
+
+The system is built with two main components:
+
+@Roles() decorator → attaches role metadata to a route
+RolesGuard → reads that metadata and decides whether the request is allowed
+
+They do not directly call each other. Instead, they communicate through metadata (Reflect API).
+
+
+3. @Roles() Decorator
+
+The decorator is defined like this:
+
+export const Roles = (...roles: UserRole[]) =>
+  SetMetadata('roles', roles);
+
+When you use it like this:
+
+@Roles(UserRole.ADMIN)
+@Get('users')
+findAll() {}
+
+NestJS stores metadata on the route handler:
+
+key: roles
+value: ["ADMIN"]
+attached to: findAll function
+
+In simple terms, @Roles() is used to “label” an API route with required permissions.
+
+Example:
+
+GET /users → ADMIN ONLY
+
+
+4. RolesGuard (Core Logic)
+
+Inside the guard:
+
+const requiredRoles = this.reflector.get<UserRole[]>(
+  'roles',
+  context.getHandler(),
+);
+
+This means:
+
+context.getHandler() → current route function
+'roles' → metadata key set by @Roles()
+reflector.get() → retrieves stored metadata
+
+Result:
+
+requiredRoles = ['ADMIN']
+
+Example: 
+
+@UseGuards(AuthGuard('jwt'), RolesGuard)
+@Roles(UserRole.ADMIN)
+@Get('users')
+findAll() {}
+
+--> This is how we work with Guard and Decorator
+
+5. Getting User from Request
+const request = context.switchToHttp().getRequest();
+const user = request.user;
+
+request.user is not created here. It is attached earlier by AuthGuard('jwt') after validating the JWT token.
+
+Example:
+
+request.user = {
+  id: 1,
+  role: 'ADMIN'
+}
+
+
+6. Authorization Logic
+
+The core check is:
+
+return requiredRoles.includes(user.role);
+
+Meaning:
+
+If user role is in required roles → allow access
+Otherwise → deny access (403 Forbidden)
+
+
+7. Full Request Lifecycle
+
+The execution flow is:
+
+Request
+  ↓
+AuthGuard (JWT validation)
+  ↓
+Attach user to request
+  ↓
+RolesGuard execution
+  ↓
+Reflector reads @Roles() metadata
+  ↓
+Compare user role with required roles
+  ↓
+Allow or deny request
+
+
+8. Relationship Between @Roles and RolesGuard
+
+They are not directly linked by function calls.
+
+Instead, they communicate through:
+
+Metadata (Reflect API)
+
+@Roles() writes metadata
+RolesGuard reads metadata
+
+
+9. Execution Timing
+Component	        When it runs
+
+@Roles()	        Application startup
+RolesGuard	        Request runtime
+
+
+10. Summary
+
+The @Roles() decorator attaches role metadata to API routes, and RolesGuard reads that metadata at runtime to determine whether the current user is authorized to access the route.

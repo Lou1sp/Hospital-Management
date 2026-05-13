@@ -1,16 +1,30 @@
+import { useLoginForm } from "@/hooks/useLoginForm";
+
 export function PatientLoginForm() {
+  const {
+    formData,
+    loading,
+    handleChange,
+    handleSubmit,
+  } = useLoginForm();
+
   return (
-    <form className="space-y-5">
+    <form className="space-y-5"
+    onSubmit={handleSubmit}
+    >
       {/* Email / Phone */}
       <div>
         <label className="block text-sm font-semibold text-slate-700 mb-2">
-          Email or Phone
+          Email 
         </label>
 
         <input
-          name="emailOrPhone"
-          placeholder="Enter email or phone number"
-          className="w-full border border-slate-200 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Enter email"
+          className="text-black w-full border border-slate-200 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
@@ -23,8 +37,10 @@ export function PatientLoginForm() {
         <input
           type="password"
           name="password"
+          value={formData.password}
+          onChange={handleChange}
           placeholder="Enter password"
-          className="w-full border border-slate-200 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+          className="text-black w-full border border-slate-200 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 

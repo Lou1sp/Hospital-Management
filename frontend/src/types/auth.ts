@@ -5,3 +5,8 @@ export type RegisterDTO = {
   phone_num: string;
   DOB: string;
 };
+
+export type LoginDTO = {
+  email: string;
+  password: string;
+}

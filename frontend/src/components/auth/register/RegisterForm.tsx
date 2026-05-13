@@ -103,7 +103,7 @@ export function RegisterForm() {
           value={formData.confirmPassword}
           onChange={handleChange}
         />
-        {formData.confirmPassword == formData.password ? "" : <p className="text-red-500">Password does not match</p>}
+        {formData.confirmPassword == formData.password ? "" : <p className="text-red-500:q">Password does not match</p>}
         <TermsCheckbox />
 
         <RegisterButton loading={loading} />
