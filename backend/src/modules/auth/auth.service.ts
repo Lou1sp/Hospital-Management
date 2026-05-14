@@ -52,6 +52,7 @@ export class AuthService {
     const payload: JwtPayLoad = { sub: userId, email, role };
     return {
       access_token: this.jwtService.sign(payload),
+      role: role,
       //jwtService.sign() encrypt payload + sign with JWT_SECRET
       //expiresIn was configured in authModule
     };

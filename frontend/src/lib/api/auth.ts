@@ -21,7 +21,7 @@ export async function registerPatient(dto: RegisterDTO) {
   return data;
 }
 
-export async function loginPatient(dto: LoginDTO) {
+export async function login(dto: LoginDTO) {
   const response = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
     headers: {

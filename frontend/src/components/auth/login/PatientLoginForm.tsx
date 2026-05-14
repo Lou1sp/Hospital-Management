@@ -10,9 +10,8 @@ export function PatientLoginForm() {
 
   return (
     <form className="space-y-5"
-    onSubmit={handleSubmit}
+    onSubmit={(e) => handleSubmit(e, "PATIENT")}
     >
-      {/* Email / Phone */}
       <div>
         <label className="block text-sm font-semibold text-slate-700 mb-2">
           Email 
@@ -28,7 +27,6 @@ export function PatientLoginForm() {
         />
       </div>
 
-      {/* Password */}
       <div>
         <label className="block text-sm font-semibold text-slate-700 mb-2">
           Password
@@ -44,7 +42,6 @@ export function PatientLoginForm() {
         />
       </div>
 
-      {/* Options */}
       <div className="flex items-center justify-between text-sm">
         <label className="flex items-center gap-2 text-slate-600">
           <input type="checkbox" />
@@ -59,7 +56,6 @@ export function PatientLoginForm() {
         </button>
       </div>
 
-      {/* Submit */}
       <button
         type="submit"
         className="w-full bg-blue-600 hover:bg-blue-900 transition text-white py-3 rounded-2xl font-semibold shadow-lg shadow-blue-200 cursor-pointer"

@@ -1,19 +1,27 @@
 import { Input } from "../../ui/Input";
-import { Button } from '../../ui/Button';
+import { useLoginForm } from "@/hooks/useLoginForm";
 
 export function StaffLoginForm() {
+  const { formData, loading, handleChange, handleSubmit } = useLoginForm();
+
   return (
-    <form className="space-y-5">
-      <Input
-        label="Employee ID"
-        placeholder="Enter hospital-issued ID"
+    <form className="space-y-5" onSubmit={(e) => handleSubmit(e, "STAFF")}>
+      <Input 
+      label="Employee Email" 
+      placeholder="Enter hospital-issued ID" 
+      name="email"
+      type="email"
+      value={formData.email}
+      onChange={handleChange}
       />
 
-      <Input
-        label="Password"
-        type="password"
-        placeholder="Enter password"
-      />
+      <Input 
+      label="Password" 
+      type="password" 
+      placeholder="Enter password"
+      name="password"
+      value={formData.password}
+      onChange={handleChange} />
 
       <div className="flex items-center justify-between text-sm">
         <label className="flex items-center gap-2 text-slate-600">
