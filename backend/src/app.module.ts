@@ -8,6 +8,7 @@ import { UserModule } from './modules/users/user.module';
 import { DoctorModule } from './modules/doctor/doctor.module';
 import { PatientModule } from './modules/patient/patient.module';
 import { AppointmentModule } from './modules/appointment/appointment.module';
+import { EncounterModule } from './modules/encounter/encounter.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
@@ -23,6 +24,7 @@ import { AppointmentModule } from './modules/appointment/appointment.module';
     DoctorModule,
     PatientModule,
     AppointmentModule,
+    EncounterModule,
   ],
   controllers: [AppController],
   providers: [AppService],
